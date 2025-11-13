@@ -12,7 +12,7 @@ describe('root', () => {
 
         render(<RouterProvider router={router} />);
         
-        const title = await screen.findByText('Fake Shop');
+        const title = await screen.findByText('Mocksy');
         expect(title).toBeInTheDocument();
     });
 });
