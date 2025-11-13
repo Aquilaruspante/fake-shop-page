@@ -5,7 +5,7 @@ export default function Root() {
     return (
         <header>
             <nav>
-                <h1 className="logo roboto-condensed-font">Mocksy</h1>
+                <h1 className="logo dm-serif-text-regular">Mocksy</h1>
                 <div className="links">
                     <House color='#ff7b54' aria-label='home' data-testid='home' />
                     <Handbag color='#ff7b54' aria-label='store' data-testid='store' />
