@@ -5,7 +5,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router';
 import routeConfig from '../src/routeConfig.jsx';
 
 describe('root', () => {
-    it('should render the home page', async () => {
+    it('should render the header', async () => {
         const router = createMemoryRouter(routeConfig, {
             initialEntries: ['/']
         });
@@ -14,5 +14,14 @@ describe('root', () => {
         
         const title = await screen.findByText('Mocksy');
         expect(title).toBeInTheDocument();
+
+        const homeLink = await screen.findByTestId('home');
+        expect(homeLink).toBeInTheDocument();
+
+        const storeLink = await screen.findByTestId('store');
+        expect(storeLink).toBeInTheDocument();
+
+        const cartLink = await screen.findByTestId('cart');
+        expect(cartLink).toBeInTheDocument();
     });
 });
