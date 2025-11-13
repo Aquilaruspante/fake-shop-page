@@ -34,7 +34,7 @@ describe('root', () => {
         render(<RouterProvider router={router} />);
 
         const firstLine = await screen.findByText('We guaratee the best prices on the market');
-        const secondLine = await screen.findByText('If you find it cheaper we reimburse you');
+        const secondLine = await screen.findByText("If you find it cheaper... well that shouldn't happen");
 
         expect(firstLine).toBeInTheDocument();
         expect(secondLine).toBeInTheDocument();

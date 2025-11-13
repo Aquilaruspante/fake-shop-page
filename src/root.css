@@ -8,6 +8,7 @@ html {
 body {
     height: 100vh;
     box-sizing: border-box;
+    background-color: var(--background-color);
 }
 
 #root {
@@ -16,7 +17,8 @@ body {
 
 header {
     height: 10%;
-    background-color: var(--background-color);
+    width: 60%;
+    margin: auto;
     color: var(--text-color);
     box-sizing: border-box;
     display: flex;
@@ -28,7 +30,7 @@ nav {
     display: flex;
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .links {
@@ -49,6 +51,10 @@ nav {
 main {
     width: 60%;
     margin: auto;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .manropeFont {
@@ -56,4 +62,10 @@ main {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
+}
+
+.nav-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
