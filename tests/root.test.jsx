@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 
 import routeConfig from '../src/routeConfig.jsx';
+import { ScanEye } from 'lucide-react';
 
 describe('root', () => {
     it('should render the header', async () => {
@@ -23,5 +24,19 @@ describe('root', () => {
 
         const cartLink = await screen.findByTestId('cart');
         expect(cartLink).toBeInTheDocument();
+    });
+
+    it('should render the home page hero correctly', async () => {
+        const router = createMemoryRouter(routeConfig, {
+            initialEntries: ['/']
+        });
+
+        render(<RouterProvider router={router} />);
+
+        const firstLine = await screen.findByText('We guaratee the best prices on the market');
+        const secondLine = await screen.findByText('If you find it cheaper we reimburse you');
+
+        expect(firstLine).toBeInTheDocument();
+        expect(secondLine).toBeInTheDocument();
     });
 });

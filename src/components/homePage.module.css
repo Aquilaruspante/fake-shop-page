@@ -1,0 +1,34 @@
+.hero {
+    font-size: 2.5rem;
+    margin: auto;
+    text-align: center;
+    color: #5f5957;
+    font-weight: 300;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 100px;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin-top: 50px;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    height: 45px;
+    width: 140px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #ec7855;
+    box-shadow: 5px 5px 5px #bbb8b2;
+    cursor: pointer;
+    transition: 0.2s;
+}

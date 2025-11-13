@@ -1,17 +1,23 @@
 import './root.css';
 import { House, Handbag, ShoppingCart } from 'lucide-react';
+import { Outlet } from 'react-router';
 
 export default function Root() {
     return (
-        <header>
-            <nav>
-                <h1 className="logo dm-serif-text-regular">Mocksy</h1>
-                <div className="links">
-                    <House color='#ff7b54' aria-label='home' data-testid='home' />
-                    <Handbag color='#ff7b54' aria-label='store' data-testid='store' />
-                    <ShoppingCart color='#ff7b54' aria-label='cart' data-testid='cart' />
-                </div>
-            </nav>
-        </header>
+        <>
+            <header>
+                <nav>
+                    <h1 className="logo dm-serif-text-regular">Mocksy</h1>
+                    <div className="links">
+                        <House color='#ff7b54' aria-label='home' data-testid='home' />
+                        <Handbag color='#ff7b54' aria-label='store' data-testid='store' />
+                        <ShoppingCart color='#ff7b54' aria-label='cart' data-testid='cart' />
+                    </div>
+                </nav>
+            </header>
+            <main>
+                <Outlet />
+            </main>
+        </>
     );
 };

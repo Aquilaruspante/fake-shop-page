@@ -45,3 +45,8 @@ nav {
   font-weight: 400;
   font-style: normal;
 }
+
+main {
+    width: 60%;
+    margin: auto;
+}
