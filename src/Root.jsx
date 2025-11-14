@@ -9,18 +9,20 @@ export default function Root() {
                 <nav>
                     <h1 className="logo dm-serif-text-regular">Mocksy</h1>
                     <div className="links">
-                        <NavLink 
-                            to={'/'}
-                            className={({ isActive, isPending }) => {
-                                return isPending ? 'pending nav-element' : isActive ? 'active nav-element' : 'nav-element';
-                            }} >
-                            <House color='#ff7b54' aria-label='home' data-testid='home' />
+                        <NavLink to={'/'}>
+                            {({ isActive }) => isActive
+                                ? <House color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.4 : ''} />
+                                : <House color='#ff7b54' aria-label='store' data-testid='store' />}
                         </NavLink>
                         <NavLink to={'/store'}>
-                            <Handbag color='#ff7b54' aria-label='store' data-testid='store' />
+                            {({ isActive }) => isActive 
+                                ? <Handbag color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.4 : ''} />
+                                : <Handbag color='#ff7b54' aria-label='store' data-testid='store' />}
                         </NavLink>
                         <NavLink to={'cart'}>
-                            <ShoppingCart color='#ff7b54' aria-label='cart' data-testid='cart' />
+                            {({ isActive }) => isActive
+                                ? <ShoppingCart color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.4 : ''} />
+                                : <ShoppingCart color='#ff7b54' aria-label='store' data-testid='store' />}
                         </NavLink>
                     </div>
                 </nav>
