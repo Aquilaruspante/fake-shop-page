@@ -1,5 +1,6 @@
-import Root from "./Root"
-import HomePage from "./components/HomePage";
+import Root from "./components/Root/Root.jsx"
+import HomePage from "./components/HomePage/HomePage.jsx";
+import Store, { loader as storeLoader } from "./components/Store/Store.jsx";
 
 const routes = [
     {
@@ -9,6 +10,11 @@ const routes = [
             { 
                 index: true,
                 element: <HomePage />
+            },
+            {
+                path: 'store',
+                element: <Store />,
+                loader: storeLoader,
             }
         ]
     }

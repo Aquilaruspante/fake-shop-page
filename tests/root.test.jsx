@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 
 import routeConfig from '../src/routeConfig.jsx';
-import { ScanEye } from 'lucide-react';
 
 describe('root', () => {
     it('should render the header', async () => {
