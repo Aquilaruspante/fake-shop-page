@@ -5,7 +5,8 @@ export default function Card({ title, price, description, category, image }) {
         <div data-testid='card' className={styles.card}>
             <img src={image} alt={title} />
             <h2>{title}</h2>
-            <p>{price}</p>
+            <p>{price} $</p>
+            <button className={styles.btn}>Add to cart</button>
         </div>
     )
 }
