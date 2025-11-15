@@ -28,7 +28,11 @@
 
 .btn:hover {
     background-color: #ec7855;
-    box-shadow: 5px 5px 5px #bbb8b2;
+    box-shadow: 10px 10px 10px #bbb8b2;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.btn:active {
+    box-shadow: none;
 }
