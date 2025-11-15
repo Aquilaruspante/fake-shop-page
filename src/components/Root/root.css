@@ -2,7 +2,7 @@ html {
     --accent-color: #ff7b54;
     --background-color: #faf7f2;
     --text-color: #534b49;
-    --border: #cecbcb;
+    --border: #dbd3d3;
 }
 
 body {
@@ -16,7 +16,7 @@ body {
 }
 
 header {
-    height: 10%;
+    height: 10vh;
     width: 60%;
     margin: auto;
     color: var(--text-color);
@@ -51,10 +51,11 @@ nav {
 main {
     width: 60%;
     margin: auto;
-    height: 80vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 60px;
 }
 
 .manropeFont {

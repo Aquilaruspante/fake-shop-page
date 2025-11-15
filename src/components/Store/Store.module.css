@@ -4,5 +4,48 @@
     flex-wrap: wrap;
     height: 100%;
     justify-content: space-between;
-    gap: 80px;
+    gap: 32px;
+    row-gap: 50px;
+    margin-top: 50px;
+}
+
+.secondHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form {
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 4;
+}
+
+.form input {
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border); 
+    font-size: 1rem;
+    padding: 5px;
+    width: 100%;
+    color: var(--text-color);
+}
+
+.form input:focus {
+    outline: none;
+}
+
+.a {
+    text-decoration: none;
+    color: var(--text-color);
+    flex-grow: 2;
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a:hover {
+    transition: 0.4s;
+    box-shadow: inset 20px 0px 20px #d3d0ce, inset -20px 0px 20px #d3d0ce, inset 0px 20px 20px var(--background-color), 0px -20px 20px var(--background-color);
 }
