@@ -7,7 +7,7 @@ export default function Root() {
         <>
             <header>
                 <nav>
-                    <h1 className="logo dm-serif-text-regular">Mocksy</h1>
+                    <h1 className="logo dm-serif-text-regular">MOCKSI</h1>
                     <div className="links">
                         <NavLink to={'/'}>
                             {({ isActive }) => isActive

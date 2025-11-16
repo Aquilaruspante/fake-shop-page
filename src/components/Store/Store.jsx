@@ -32,7 +32,7 @@ export async function loader({ request }) {
         return data.filter(item => item.category === postProcessedCategory)
     }
     if (query) {
-        const filteredData = data.filter(item => item.title.toLowerCase().includes(query));
+        const filteredData = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
         return filteredData;
     }
     return data;
