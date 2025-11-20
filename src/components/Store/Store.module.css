@@ -49,3 +49,7 @@
     transition: 0.4s;
     box-shadow: inset 20px 0px 20px #d3d0ce, inset -20px 0px 20px #d3d0ce, inset 0px 20px 20px var(--background-color), 0px -20px 20px var(--background-color);
 }
+
+.active {
+    text-decoration: underline;
+}
