@@ -1,7 +1,9 @@
 import styles from './Store.module.css';
-import { Form, NavLink, Outlet } from "react-router";
+import { Form, NavLink, Outlet, useSubmit } from "react-router";
 
 export default function Store() {
+    const submit = useSubmit();
+
     return(
         <>
             <nav className={styles.secondHeader}>
@@ -13,8 +15,9 @@ export default function Store() {
                 <NavLink className={({ isActive }) => isActive ? `${styles.active} ${styles.a}` : styles.a} to={'/store/electronics'}>Electronics</NavLink>
                 <Form 
                     className={styles.form}
-                    role="search">
-                    <input aria-label='search-item' type="search" placeholder='Search Item...' name='q'/>
+                    role="search"
+                    action='/store'>
+                    <input aria-label='search-item' type="search" placeholder='Search Item...' name='q' onChange={(e) => { submit(e.currentTarget.form) }}/>
                 </Form>
             </nav>
             <ul className={styles.container}>
