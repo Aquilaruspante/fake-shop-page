@@ -11,7 +11,15 @@ export default function Card({ title, price, description, category, image }) {
             <h2 className={styles.montserratRegular}>{title.slice(0, 40)}...</h2>
             <div className={styles.lastLine}>
                 <p className={styles.price}>{price} $</p>
-                <button className={styles.btn}>+<ShoppingCart size={15} strokeWidth={3}/></button>
+                <div className={styles.btn}>
+                    <fetcher.Form className={styles.formButton}>
+                        -
+                    </fetcher.Form>
+                    <ShoppingCart size={15} strokeWidth={3}/>
+                    <fetcher.Form className={styles.formButton}>
+                        +
+                    </fetcher.Form>
+                </div>
             </div>           
         </div>
     )
