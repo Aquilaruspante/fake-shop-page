@@ -6,8 +6,11 @@ import { ShoppingCart } from "lucide-react";
 export async function action({ request }) {
     const formData = await request.formData();
     const item = JSON.parse(formData.get('item'));
+    const type = formData.get('type');
     
-    addToCart(item);
+    if (type === 'add') {
+        addToCart(item);
+    };
 };
 
 export default function AddToCartButton({ item }) {
@@ -23,7 +26,7 @@ export default function AddToCartButton({ item }) {
                 className={styles.formButton}
                 method='POST'>
                     <input name='item' value={JSON.stringify(item)} hidden={true} readOnly={true} />
-                    <button type='submit'>+</button>
+                    <button name='type' value='add' type='submit'>+</button>
             </fetcher.Form>   
         </>
     );

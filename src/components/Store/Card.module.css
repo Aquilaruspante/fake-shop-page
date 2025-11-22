@@ -58,3 +58,12 @@
     font-size: 1.2rem;
     font-weight: 550;
 }
+
+.formButton button {
+    border: none;
+    color: var(--accent-color);
+}
+
+.formButton button:hover {
+    cursor: pointer;
+}
