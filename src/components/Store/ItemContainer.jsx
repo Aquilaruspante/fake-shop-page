@@ -48,7 +48,7 @@ export default function ItemContainer() {
         isLoading ? <p>Loading...</p> :
         <>
             {data.map((item) => (
-                <li key={item.id}><Card title={item.title} price={item.price} description={item.description} category={item.category} image={item.image} /></li>
+                <li key={item.id}><Card item={item} /></li>
             ))}
         </>
     )
