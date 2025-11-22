@@ -13,7 +13,6 @@ export function addToCart(item) {
     const index = items.indexOf(element);
 
     if (element) {
-        console.log('element', element.quantity);
         const newElement = {
             ...element,
             quantity: element.quantity + 1,

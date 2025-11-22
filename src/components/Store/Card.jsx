@@ -1,7 +1,8 @@
 import styles from './Card.module.css';
 import AddToCartButton from './addToCartButton';
 
-export default function Card({ item }) {
+export default function Card({ item, cart }) {
+
     return(
         <div data-testid='card' className={styles.card}>
             <img src={item.image} alt={item.title} />
@@ -9,7 +10,7 @@ export default function Card({ item }) {
             <div className={styles.lastLine}>
                 <p className={styles.price}>{item.price} $</p>
                 <div className={styles.btn}>
-                    <AddToCartButton item={item} />
+                    <AddToCartButton item={item} cart={cart} />
                 </div>
             </div>           
         </div>

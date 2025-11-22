@@ -1,8 +1,15 @@
 import './root.css';
 import { House, Handbag, ShoppingCart } from 'lucide-react';
-import { Outlet, NavLink } from 'react-router';
+import { Outlet, NavLink, useLoaderData } from 'react-router';
+import { getCart } from '../../cartManager';
+
+export function loader() {
+    return getCart();
+};
 
 export default function Root() {
+    const cart = useLoaderData();
+
     return (
         <>
             <header>
@@ -28,7 +35,7 @@ export default function Root() {
                 </nav>
             </header>
             <main>
-                <Outlet />
+                <Outlet context={cart} />
             </main>
         </>
     );

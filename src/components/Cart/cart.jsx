@@ -1,11 +1,4 @@
 import { useLoaderData } from "react-router";
-import { getCart } from "../../cartManager";
-
-export function loader() {
-    const items = getCart();
-
-    return items;
-};
 
 export default function Cart() {
     const data = useLoaderData();

@@ -1,5 +1,4 @@
-import { useLoaderData, useNavigation } from "react-router";
-import { useEffect } from "react";
+import { useLoaderData, useNavigation, useOutletContext } from "react-router";
 import Card from "./Card";
 
 export async function loader({ request, params }) {
@@ -41,6 +40,7 @@ export async function loader({ request, params }) {
 export default function ItemContainer() {
     const data = useLoaderData();
     const navigation = useNavigation();
+    const cart = useOutletContext()
 
     const isLoading = navigation.state === 'loading';
 
@@ -48,7 +48,7 @@ export default function ItemContainer() {
         isLoading ? <p>Loading...</p> :
         <>
             {data.map((item) => (
-                <li key={item.id}><Card item={item} /></li>
+                <li key={item.id}><Card item={item} cart={cart} /></li>
             ))}
         </>
     )

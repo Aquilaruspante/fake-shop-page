@@ -1,8 +1,9 @@
 import styles from './Store.module.css';
-import { Form, NavLink, Outlet, useSubmit } from "react-router";
+import { Form, NavLink, Outlet, useSubmit, useOutletContext } from "react-router";
 
 export default function Store() {
     const submit = useSubmit();
+    const cart = useOutletContext();
 
     return(
         <>
@@ -21,7 +22,7 @@ export default function Store() {
                 </Form>
             </nav>
             <ul className={styles.container}>
-                <Outlet />
+                <Outlet context={cart} />
             </ul>
             
         </>

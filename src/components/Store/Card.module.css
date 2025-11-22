@@ -76,3 +76,8 @@
     transition: 0.2s;
     text-shadow: none;
 }
+
+.quantity {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
