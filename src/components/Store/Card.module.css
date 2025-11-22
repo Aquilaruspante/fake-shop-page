@@ -62,8 +62,17 @@
 .formButton button {
     border: none;
     color: var(--accent-color);
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 .formButton button:hover {
     cursor: pointer;
+    text-shadow: 2px 2px 2px #bbb8b2;
+    transition: 0.2s;
+}
+
+.formButton button:active {
+    transition: 0.2s;
+    text-shadow: none;
 }
