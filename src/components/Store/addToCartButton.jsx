@@ -1,5 +1,5 @@
 import { addToCart, removeFromCart } from "../../cartManager";
-import { useFetcher, useLoaderData } from "react-router";
+import { useFetcher } from "react-router";
 import styles from './Card.module.css';
 import { ShoppingCart } from "lucide-react";
 
