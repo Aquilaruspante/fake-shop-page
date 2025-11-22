@@ -1,4 +1,4 @@
-import { addToCart } from "../../cartManager";
+import { addToCart, removeFromCart } from "../../cartManager";
 import { useFetcher } from "react-router";
 import styles from './Card.module.css';
 import { ShoppingCart } from "lucide-react";
@@ -10,6 +10,8 @@ export async function action({ request }) {
     
     if (type === 'add') {
         addToCart(item);
+    } else if (type === 'remove') {
+        removeFromCart(item);
     };
 };
 
@@ -18,8 +20,11 @@ export default function AddToCartButton({ item }) {
 
     return (
         <>
-            <fetcher.Form className={styles.formButton}>
-                -
+            <fetcher.Form 
+                className={styles.formButton}
+                method="POST">
+                    <input name='item' value={JSON.stringify(item)} hidden={true} readOnly={true} />
+                    <button name='type' value='remove' type='submit'>-</button>
             </fetcher.Form>
             <ShoppingCart size={15} strokeWidth={3}/>
             <fetcher.Form 
