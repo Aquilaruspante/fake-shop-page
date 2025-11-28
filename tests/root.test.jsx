@@ -1,7 +1,19 @@
-import { it, expect, describe } from 'vitest';
+import { it, expect, describe, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router';
+import { createMemoryRouter, RouterProvider, useNavigate } from 'react-router';
 import userEvent from '@testing-library/user-event';
+
+vi.mock('react-router', async() => {
+    const actual = await vi.importActual('react-router');
+
+    return {
+        ...actual,
+        useNavigate: vi.fn(),
+    };
+});
+
+const mockNavigate = vi.fn();
+useNavigate.mockReturnValue(mockNavigate);
 
 import routeConfig from './mockRouteConfig';
 
@@ -47,7 +59,7 @@ describe('root', () => {
         expect(button).toHaveTextContent('Shop with us');
     });
 
-    it('links should work correctly', () => {
+    it('links should work correctly', async () => {
         const router = createMemoryRouter(routeConfig, {
             initialEntries: ['/']
         });
@@ -55,6 +67,28 @@ describe('root', () => {
         const user = userEvent.setup();
         render(<RouterProvider router={router} />);
 
+        const homeLink = await screen.findByTestId('home');
+        expect(homeLink).toHaveAttribute('href', '/');
 
-    })
+        const storeLink = await screen.findByTestId('store');
+        expect(storeLink).toHaveAttribute('href', '/store');
+
+        const cartLink = await screen.findByTestId('cart');
+        expect(cartLink).toHaveAttribute('href', '/cart');
+    });
+
+    it('button should work', async () => {
+        const router = createMemoryRouter(routeConfig, {
+            initialEntries: ['/']
+        });
+
+        const user = userEvent.setup();
+        render(<RouterProvider router={router} />);
+
+        const button = await screen.findByRole('button', { name: 'Shop with us'});
+        await user.click(button);
+
+        expect(mockNavigate).toHaveBeenCalledWith('/store');
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
+    });
 });
