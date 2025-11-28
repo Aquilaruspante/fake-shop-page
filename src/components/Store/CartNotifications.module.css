@@ -1,7 +1,8 @@
 .notifications {
+    display: inline-block;
     position: relative;
-    right: 52px;
-    bottom: 8px;
+    right: 8px;
+    bottom: 18px;
     background-color: var(--accent-color);
     color: var(--background-color);
     width: 15px;
