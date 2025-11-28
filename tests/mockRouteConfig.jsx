@@ -5,6 +5,28 @@ const routes = [
     {
         path: '/',
         element: <Root />,
+        loader: () => {
+            return [
+                {
+                    id: 1,
+                    title: 'jacket',
+                    category: "men's clothing",
+                    description: 'a jacket',
+                    image: 'imageurl',
+                    price: 34,
+                    quantity: 2,
+                },
+                {
+                    id: 2,
+                    title: 'bracelet',
+                    category: 'jewelery',
+                    description: 'a bracelet',
+                    image: 'braceletimage',
+                    price: 233,
+                    quantity: 3,
+                },
+            ];
+        },
         children: [
             { 
                 index: true,

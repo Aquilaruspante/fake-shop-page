@@ -17,22 +17,24 @@ export default function Root() {
                 <nav>
                     <h1 className="logo dm-serif-text-regular">MOCKSI</h1>
                     <div className="links">
-                        <NavLink className="nav-link" to={'/'}>
+                        <NavLink className="nav-link" to={'/'} data-testid='home' aria-label='home link'>
                             {({ isActive }) => isActive
-                                ? <House color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
-                                : <House color='#ff7b54' aria-label='store' data-testid='store' />}
+                                ? <House color='#ff7b54' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
+                                : <House color='#ff7b54' />}
                         </NavLink>
-                        <NavLink className="nav-link" to={'/store'}>
+                        <NavLink className="nav-link" to={'/store'} data-testid='store' aria-label='store link'>
                             {({ isActive }) => isActive 
-                                ? <Handbag color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
-                                : <Handbag color='#ff7b54' aria-label='store' data-testid='store' />}
+                                ? <Handbag color='#ff7b54' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
+                                : <Handbag color='#ff7b54' />}
                         </NavLink>
-                        <NavLink className="{nav-link" to={'cart'}>
+                        <div className='cart-and-notifications'>
+                            <NavLink className="{nav-link" to={'cart'} data-testid='cart' aria-label='cart link'>
                             {({ isActive }) => isActive
-                                ? <ShoppingCart color='#ff7b54' aria-label='store' data-testid='store' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
-                                : <ShoppingCart color='#ff7b54' aria-label='store' data-testid='store' />}
-                        </NavLink>
-                        <CartNotifications cart={cart} />
+                                ? <ShoppingCart color='#ff7b54' fill={isActive ? '#ff7b54' : ''} fillOpacity={isActive ? 0.3 : ''} />
+                                : <ShoppingCart color='#ff7b54' />}
+                            </NavLink>
+                            <CartNotifications cart={cart} />
+                        </div>
                     </div>
                 </nav>
             </header>
