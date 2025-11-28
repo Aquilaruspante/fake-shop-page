@@ -1,5 +1,7 @@
 import Root from "../src/components/Root/Root";
 import HomePage from "../src/components/HomePage/HomePage";
+import Store from "../src/components/Store/Store";
+import ItemContainer from "../src/components/Store/ItemContainer";
 
 const routes = [
     {
@@ -33,29 +35,35 @@ const routes = [
                 element: <HomePage />
             },
             {
-                path: '/store',
-                element: 'store',
-                loader: () => (
-                    [
-                        {
-                            id: 0,
-                            title: "jacket",
-                            price: 0.1,
-                            description: "confy",
-                            category: "clothes",
-                            image: "http://example.com"
-                        },
-                        {
-                            id: 1,
-                            title: "skirt",
-                            price: 0.5,
-                            description: "beautiful",
-                            category: "clothes",
-                            image: "http://example.com"
-                        },
+                element: <Store />,
+                children: [
+                    {
+                        path: 'store/:category?',
+                        element: <ItemContainer />,
+                        loader: () => (
+                            [
+                                {
+                                    id: 0,
+                                    title: "jacket",
+                                    price: 0.1,
+                                    description: "confy",
+                                    category: "clothes",
+                                    image: "http://example.com"
+                                },
+                                {
+                                    id: 1,
+                                    title: "skirt",
+                                    price: 0.5,
+                                    description: "beautiful",
+                                    category: "clothes",
+                                    image: "http://example.com"
+                                },
 
-                    ]
-                )
+                            ]
+                        ),
+                        action: () => {},
+                    },
+                ],
             }
         ]
     }
