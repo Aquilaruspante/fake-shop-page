@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { createMemoryRouter, RouterProvider, useSubmit } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import mockRouteConfig from './mockRouteConfig';
+import { removeFromCart, addToCart } from '../src/cartManager';
 
 vi.mock('react-router', async() => {
     const actual = await vi.importActual('react-router');
@@ -10,6 +11,16 @@ vi.mock('react-router', async() => {
     return {
         ...actual,
         useSubmit: vi.fn(),
+    };
+});
+
+vi.mock('../src/cartManager', async() => {
+    const actual = vi.importActual('../src/cartManager');
+
+    return {
+        ...actual,
+        removeFromCart: vi.fn(),
+        addToCart: vi.fn(),
     };
 });
 
@@ -114,5 +125,61 @@ describe('store card component', () => {
         const cartNotification = await screen.findByLabelText('total-items');
         expect(cartNotification).toBeInTheDocument();
         expect(cartNotification).toHaveTextContent('5');
-    })
+    });
 });
+
+describe('addToCart buttons', async() => {
+    it('should call removeFromCart and addToCart with correct objects when respective buttons clicked', async() => {
+        const router = createRouter(['/store']);
+        const user = userEvent.setup();
+        render(<RouterProvider router={router} />);
+
+        const buttons = await screen.findAllByRole('button');
+        const [minusButtonOne, plusButtonOne, minusButtonTwo, plusButtonTwo] = buttons;
+
+        await user.click(minusButtonOne);
+        expect(removeFromCart).toHaveBeenCalledTimes(1);
+        expect(removeFromCart).toHaveBeenCalledWith({
+            id: 0,
+            title: "jacket",
+            price: 0.1,
+            description: "confy",
+            category: "clothes",
+            image: "http://example.com"
+        });
+
+        await user.click(plusButtonOne);
+        expect(addToCart).toHaveBeenCalledTimes(1);
+        expect(addToCart).toHaveBeenCalledWith({
+            id: 0,
+            title: "jacket",
+            price: 0.1,
+            description: "confy",
+            category: "clothes",
+            image: "http://example.com"
+        });
+
+        await user.click(minusButtonTwo);
+        expect(removeFromCart).toHaveBeenCalledTimes(2);
+        expect(removeFromCart).toHaveBeenCalledWith({
+            id: 1,
+            title: "skirt",
+            price: 0.5,
+            description: "beautiful",
+            category: "clothes",
+            image: "http://example.com"
+        });
+
+
+        await user.click(plusButtonTwo);
+        expect(addToCart).toHaveBeenCalledTimes(2);
+        expect(addToCart).toHaveBeenCalledWith({
+            id: 1,
+            title: "skirt",
+            price: 0.5,
+            description: "beautiful",
+            category: "clothes",
+            image: "http://example.com"
+        });
+    })
+})

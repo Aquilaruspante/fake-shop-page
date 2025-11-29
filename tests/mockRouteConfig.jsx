@@ -2,6 +2,7 @@ import Root from "../src/components/Root/Root";
 import HomePage from "../src/components/HomePage/HomePage";
 import Store from "../src/components/Store/Store";
 import ItemContainer from "../src/components/Store/ItemContainer";
+import { addToCart, removeFromCart } from "../src/cartManager";
 
 const routes = [
     {
@@ -61,7 +62,17 @@ const routes = [
 
                             ]
                         ),
-                        action: () => {},
+                        action: async ({ request }) => {
+                            const formData = await request.formData();
+                            const item = JSON.parse(formData.get('item'));
+                            const type = formData.get('type');
+                            
+                            if (type === 'add') {
+                                addToCart(item);
+                            } else if (type === 'remove') {
+                                removeFromCart(item);
+                            };
+                        },
                     },
                 ],
             }
