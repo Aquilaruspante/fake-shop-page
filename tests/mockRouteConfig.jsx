@@ -10,7 +10,7 @@ const routes = [
         loader: () => {
             return [
                 {
-                    id: 1,
+                    id: 0,
                     title: 'jacket',
                     category: "men's clothing",
                     description: 'a jacket',
@@ -19,7 +19,7 @@ const routes = [
                     quantity: 2,
                 },
                 {
-                    id: 2,
+                    id: 1,
                     title: 'bracelet',
                     category: 'jewelery',
                     description: 'a bracelet',

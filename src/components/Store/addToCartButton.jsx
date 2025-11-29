@@ -33,7 +33,7 @@ export default function AddToCartButton({ item, cart }) {
                     <input name='item' value={JSON.stringify(item)} hidden={true} readOnly={true} />
                     <button name='type' value='remove' type='submit'>-</button>
             </fetcher.Form>
-            {quantity && <span className={styles.quantity}>{quantity}</span>}
+            {quantity && <span aria-label="quantity" className={styles.quantity}>{quantity}</span>}
             <ShoppingCart size={15} strokeWidth={3}/>
             <fetcher.Form 
                 className={styles.formButton}

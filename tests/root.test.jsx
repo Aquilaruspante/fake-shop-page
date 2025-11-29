@@ -37,7 +37,7 @@ describe('root', () => {
         const cartLink = await screen.findByTestId('cart');
         expect(cartLink).toBeInTheDocument();
 
-        const cartItemsNumber = await screen.findByTestId('cart-items-number');
+        const cartItemsNumber = await screen.findByLabelText('total-items');
         expect(cartItemsNumber).toBeInTheDocument();
         expect(cartItemsNumber).toHaveTextContent('5');
     });

@@ -5,5 +5,5 @@ export default function CartNotifications ({ cart }) {
         return accumulator + currentValue.quantity;
     }, 0);
 
-    return <div data-testid='cart-items-number' className={quantity ? styles.notifications : `${styles.notifications} ${styles.hidden}` }>{quantity}</div>
+    return <div aria-label='total-items' className={quantity ? styles.notifications : `${styles.notifications} ${styles.hidden}` }>{quantity}</div>
 };
