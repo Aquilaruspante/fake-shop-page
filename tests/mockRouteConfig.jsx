@@ -3,6 +3,7 @@ import HomePage from "../src/components/HomePage/HomePage";
 import Store from "../src/components/Store/Store";
 import ItemContainer from "../src/components/Store/ItemContainer";
 import { addToCart, removeFromCart } from "../src/cartManager";
+import ProductPage from "../src/components/ProductPage/ProductPage";
 
 const routes = [
     {
@@ -38,6 +39,21 @@ const routes = [
             {
                 element: <Store />,
                 children: [
+                    {
+                        path: 'store/products/:productId',
+                        element: <ProductPage />,
+                        loader: () => (
+                            {
+                                id: 0,
+                                title: "jacket",
+                                price: 0.1,
+                                description: "confy",
+                                category: "clothes",
+                                image: "http://example.com"
+                            }
+                        ),
+                        action: () => {},
+                    },
                     {
                         path: 'store/:category?',
                         element: <ItemContainer />,

@@ -4,6 +4,7 @@ import Store from "./components/Store/Store.jsx";
 import ItemContainer, { loader as itemLoader} from "./components/Store/ItemContainer.jsx";
 import { action as addToCartAction } from "./components/Store/addToCartButton.jsx";
 import Cart from './components/Cart/cart.jsx';
+import ProductPage, { loader as productLoader } from './components/ProductPage/ProductPage.jsx';
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
             {
                 element: <Store />,
                 children: [
+                    {
+                        path: 'store/products/:productId',
+                        element: <ProductPage />,
+                        loader: productLoader,
+                    },
                     {
                         path: 'store/:category?',
                         element: <ItemContainer />,
