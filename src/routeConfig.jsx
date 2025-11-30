@@ -23,6 +23,7 @@ const routes = [
                         path: 'store/products/:productId',
                         element: <ProductPage />,
                         loader: productLoader,
+                        action: addToCartAction,
                     },
                     {
                         path: 'store/:category?',

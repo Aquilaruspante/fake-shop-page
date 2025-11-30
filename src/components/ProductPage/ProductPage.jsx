@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useOutletContext } from "react-router";
 import styles from './ProductPage.module.css';
+import AddToCartButton from "../Store/addToCartButton";
 
 export async function loader({ params }) {
     const { productId } =  params;
@@ -10,6 +11,7 @@ export async function loader({ params }) {
 
 export default function ProductPage() {
     const data = useLoaderData();
+    const cart = useOutletContext();
 
     return (
         <div className={styles.card}>
@@ -17,10 +19,13 @@ export default function ProductPage() {
                 <img src={data.image} alt="product image" />
                 <h2 aria-label="product title">{data.title}</h2>
                 <div className="">
-                    <div aria-label="price">{data.price}</div>
+                    <div className={styles.price} aria-label="price">{data.price}$</div>
                 </div>
             </div>
-            <div aria-label="description" className={styles.description}>{data.description}</div>
+            <div className={styles.rightSide}>
+                <div aria-label="description" className={styles.description}>{data.description}</div>
+                <AddToCartButton item={data} cart={cart} />
+            </div>
         </div>
     )
 }

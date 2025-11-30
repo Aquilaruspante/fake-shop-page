@@ -5,6 +5,16 @@ import ItemContainer from "../src/components/Store/ItemContainer";
 import { addToCart, removeFromCart } from "../src/cartManager";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 
+vi.mock('../src/cartManager', async() => {
+    const actual = vi.importActual('../src/cartManager');
+
+    return {
+        ...actual,
+        removeFromCart: vi.fn(),
+        addToCart: vi.fn(),
+    };
+});
+
 const routes = [
     {
         path: '/',
@@ -52,7 +62,17 @@ const routes = [
                                 image: "http://example.com"
                             }
                         ),
-                        action: () => {},
+                        action: async ({ request }) => {
+                            const formData = await request.formData();
+                            const item = JSON.parse(formData.get('item'));
+                            const type = formData.get('type');
+                            
+                            if (type === 'add') {
+                                addToCart(item);
+                            } else if (type === 'remove') {
+                                removeFromCart(item);
+                            };
+                        },
                     },
                     {
                         path: 'store/:category?',

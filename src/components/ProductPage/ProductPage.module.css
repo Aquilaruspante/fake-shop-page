@@ -18,3 +18,13 @@
 .leftSide img {
     height: 70%;
 }
+
+.leftSide h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: 500;
+}

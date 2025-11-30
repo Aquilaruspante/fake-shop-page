@@ -14,16 +14,6 @@ vi.mock('react-router', async() => {
     };
 });
 
-vi.mock('../src/cartManager', async() => {
-    const actual = vi.importActual('../src/cartManager');
-
-    return {
-        ...actual,
-        removeFromCart: vi.fn(),
-        addToCart: vi.fn(),
-    };
-});
-
 function createRouter(entry) {
     return createMemoryRouter(mockRouteConfig, {
         initialEntries: entry,
