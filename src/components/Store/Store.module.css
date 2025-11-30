@@ -53,3 +53,11 @@
 .active {
     text-decoration: underline;
 }
+
+img:hover {
+    cursor: pointer;
+}
+
+h2:hover {
+    cursor: pointer;
+}
