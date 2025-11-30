@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { createMemoryRouter, RouterProvider, useSubmit } from 'react-router';
+import { createMemoryRouter, RouterProvider, useSubmit, useNavigate } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import mockRouteConfig from './mockRouteConfig';
 import { removeFromCart, addToCart } from '../src/cartManager';
@@ -11,6 +11,7 @@ vi.mock('react-router', async() => {
     return {
         ...actual,
         useSubmit: vi.fn(),
+        useNavigate: vi.fn(),
     };
 });
 
@@ -171,5 +172,39 @@ describe('addToCart buttons', async() => {
             category: "clothes",
             image: "http://example.com"
         });
-    })
-})
+    });
+});
+
+describe('links to ProductPage', () => {
+    it('should navigate to "/store/products/:productId when image or title clicked', async () => {
+        const router = createRouter(['/store']);
+        const user = userEvent.setup();
+
+        const navigate = vi.fn();
+        useNavigate.mockReturnValue(navigate);
+
+        render(<RouterProvider router={router} />);
+    
+        const imgs = await screen.findAllByRole('img');
+        const [imageOne, imageTwo] = imgs;
+
+        await user.click(imageOne);
+        expect(navigate).toHaveBeenCalledTimes(1);
+        expect(navigate).toHaveBeenCalledWith('/store/products/0');
+
+        await user.click(imageTwo);
+        expect(navigate).toHaveBeenCalledTimes(2);
+        expect(navigate).toHaveBeenCalledWith('/store/products/1');
+
+        const titles = await screen.findAllByTestId('card-title');
+        const [titleOne, titleTwo] = titles;
+
+        await user.click(titleOne);
+        expect(navigate).toHaveBeenCalledTimes(3);
+        expect(navigate).toHaveBeenCalledWith('/store/products/0');
+
+        await user.click(titleTwo);
+        expect(navigate).toHaveBeenCalledTimes(4);
+        expect(navigate).toHaveBeenCalledWith('/store/products/1');
+    });
+});
