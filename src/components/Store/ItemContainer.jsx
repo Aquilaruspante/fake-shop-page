@@ -1,5 +1,6 @@
 import { useLoaderData, useNavigation, useOutletContext } from "react-router";
 import Card from "./Card";
+import styles from './Store.module.css';
 
 export async function loader({ request, params }) {
     const url = new URL(request.url);
@@ -46,10 +47,10 @@ export default function ItemContainer() {
 
     return (
         isLoading ? <p>Loading...</p> :
-        <>
+        <ul className={styles.container}>
             {data.map((item) => (
                 <li key={item.id}><Card item={item} cart={cart} /></li>
             ))}
-        </>
+        </ul>
     )
 }

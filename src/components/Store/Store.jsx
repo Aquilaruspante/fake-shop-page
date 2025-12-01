@@ -21,10 +21,9 @@ export default function Store() {
                     <input aria-label='search-item' type="search" placeholder='Search Item...' name='q' onChange={(e) => { submit(e.currentTarget.form) }}/>
                 </Form>
             </nav>
-            <ul className={styles.container}>
+            <>
                 <Outlet context={cart} />
-            </ul>
-            
+            </>
         </>
         
     )
