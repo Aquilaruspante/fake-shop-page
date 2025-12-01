@@ -10,16 +10,19 @@
 
 .leftSide {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .leftSide img {
     height: 70%;
 }
 
-.leftSide h2 {
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.rightSide h2 {
     font-size: 1.3rem;
     font-weight: 600;
 }
