@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 90%;
+}
+
+.productCard {
+    height: 200px;
+    display: flex;
+    width: 50%;
+    min-width: 400px;
+}
+
+.leftSide {
+    display: flex;
+    align-items: center;
+}
+
+.leftSide img {
+    width: 120px;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    width: 75%;
+}
+
+.lastLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

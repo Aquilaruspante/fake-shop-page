@@ -4,6 +4,7 @@ import Store from "../src/components/Store/Store";
 import ItemContainer from "../src/components/Store/ItemContainer";
 import { addToCart, removeFromCart } from "../src/cartManager";
 import ProductPage from "../src/components/ProductPage/ProductPage";
+import Cart from "../src/components/Cart/cart";
 
 vi.mock('../src/cartManager', async() => {
     const actual = vi.importActual('../src/cartManager');
@@ -111,6 +112,32 @@ const routes = [
                         },
                     },
                 ],
+            },
+            {
+                path: 'cart',
+                element: <Cart />,
+                loader: () => {
+                    return [
+                        {
+                            id: 0,
+                            title: 'jacket',
+                            category: "men's clothing",
+                            description: 'a jacket',
+                            image: 'imageurl',
+                            price: 34,
+                            quantity: 2,
+                        },
+                        {
+                            id: 1,
+                            title: 'bracelet',
+                            category: 'jewelery',
+                            description: 'a bracelet',
+                            image: 'braceletimage',
+                            price: 233,
+                            quantity: 3,
+                        },
+                    ];
+                },
             }
         ]
     }

@@ -25,7 +25,7 @@ export default function ProductPage() {
 
                 <div className={`${storeStyles.lastLine} ${styles.productLastLine}`}>
                     <div className={styles.price} aria-label="price">{data.price}$</div>
-                    <div class={storeStyles.btn}>
+                    <div className={storeStyles.btn}>
                         <AddToCartButton item={data} cart={cart} />
                     </div>
                     
