@@ -1,33 +1,48 @@
 .card {
     display: flex;
-    height: 80%;
-}
-
-.description {
-    box-sizing: border-box;
-    padding: 64px;
+    height: 75%;
+    margin-top: 5%;
+    width: 75%;
+    margin: auto;
 }
 
 .leftSide {
     height: 100%;
+    width: 50%;
 }
 
 .leftSide img {
-    height: 70%;
+    box-sizing: border-box;
+    padding: 48px;
+    width: 90%;
 }
 
 .rightSide {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: start;
+    gap: 72px;
+    box-sizing: border-box;
+    padding: 48px;
+    width: 50%;
 }
 
 .rightSide h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
 }
 
+.productLastLine {
+    flex-grow: 2;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
 .price {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.description {
+    line-height: 1.5em;
 }

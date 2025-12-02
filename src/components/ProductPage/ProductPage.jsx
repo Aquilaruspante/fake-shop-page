@@ -1,6 +1,6 @@
 import { useLoaderData, useOutletContext } from "react-router";
 import styles from './ProductPage.module.css';
-import storeStyles from '../Store/Store.module.css';
+import storeStyles from '../Store/Card.module.css';
 import AddToCartButton from "../Store/addToCartButton";
 
 export async function loader({ params }) {
@@ -23,9 +23,12 @@ export default function ProductPage() {
                 <h2 aria-label="product title">{data.title}</h2>
                 <div aria-label="description" className={styles.description}>{data.description}</div>
 
-                <div className={storeStyles.lastLine}>
+                <div className={`${storeStyles.lastLine} ${styles.productLastLine}`}>
                     <div className={styles.price} aria-label="price">{data.price}$</div>
-                    <AddToCartButton item={data} cart={cart} />
+                    <div class={storeStyles.btn}>
+                        <AddToCartButton item={data} cart={cart} />
+                    </div>
+                    
                 </div>
                 
             </div>
