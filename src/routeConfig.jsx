@@ -37,6 +37,7 @@ const routes = [
                 path: 'cart',
                 element: <Cart />,
                 loader: cartLoader,
+                action: addToCartAction,
             }
         ]
     }

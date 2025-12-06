@@ -5,8 +5,6 @@ import styles from './CartCard.module.css';
 export default function Cart() {
     const data = useLoaderData();
 
-    console.log('inside component', data);
-
     return (
         <ul className={styles.container}>
             {data.map((item) => <li key={item.id}><CartCard item={item} cart={data} /></li>)}

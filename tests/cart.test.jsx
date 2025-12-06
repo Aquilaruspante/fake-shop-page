@@ -1,14 +1,27 @@
-import { it, expect, describe } from 'vitest';
+import { it, expect, describe, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router';
+import { createMemoryRouter, RouterProvider, useFetcher } from 'react-router';
+
+import userEvent from '@testing-library/user-event';
 import mockRouterConfig from './mockRouteConfig';
 
-const router = createMemoryRouter(mockRouterConfig, {
-    initialEntries: ['/cart']
+vi.mock('../src/cartManager', async () => {
+    const actual = await vi.importActual('../src/cartManager');
+
+    return {
+        ...actual, 
+        addToCart: vi.fn(),
+        removeFromCart: vi.fn(),
+    };
 });
+
+import { addToCart, removeFromCart } from '../src/cartManager';
 
 describe('cart rendering', () => {
     it('should render cards', async () => {
+        const router = createMemoryRouter(mockRouterConfig, {
+            initialEntries: ['/cart']
+        });
         render(<RouterProvider router={router} />);
         
         const cards = await screen.findAllByLabelText('product card');
@@ -40,5 +53,68 @@ describe('cart rendering', () => {
         const [totalOne, totalTwo] = totals;
         expect(totalOne).toHaveTextContent('68');
         expect(totalTwo).toHaveTextContent('699');
-    })
-})
+    });
+});
+
+describe('addToCart buttons', async() => {
+    it('should call removeFromCart and addToCart with correct objects when respective buttons clicked', async() => {
+        const router = createMemoryRouter(mockRouterConfig, {
+            initialEntries: ['/cart']
+        });
+        const user = userEvent.setup();
+        render(<RouterProvider router={router} />);
+
+        const buttons = await screen.findAllByRole('button');
+        expect(buttons).toHaveLength(4);
+        const [minusButtonOne, plusButtonOne, minusButtonTwo, plusButtonTwo] = buttons;
+
+        await user.click(minusButtonOne);
+        expect(removeFromCart).toHaveBeenCalledTimes(1);
+        expect(removeFromCart).toHaveBeenCalledWith({
+            id: 0,
+            title: 'jacket',
+            category: "men's clothing",
+            description: 'a jacket',
+            image: 'imageurl',
+            price: 34,
+            quantity: 2,
+        });
+
+        await user.click(plusButtonOne);
+        expect(addToCart).toHaveBeenCalledTimes(1);
+        expect(addToCart).toHaveBeenCalledWith({
+            id: 0,
+            title: 'jacket',
+            category: "men's clothing",
+            description: 'a jacket',
+            image: 'imageurl',
+            price: 34,
+            quantity: 2,
+        });
+
+        await user.click(minusButtonTwo);
+        expect(removeFromCart).toHaveBeenCalledTimes(2);
+        expect(removeFromCart).toHaveBeenCalledWith({
+            id: 1,
+            title: 'bracelet',
+            category: 'jewelery',
+            description: 'a bracelet',
+            image: 'braceletimage',
+            price: 233,
+            quantity: 3,
+        });
+
+
+        await user.click(plusButtonTwo);
+        expect(addToCart).toHaveBeenCalledTimes(2);
+        expect(addToCart).toHaveBeenCalledWith({
+            id: 1,
+            title: 'bracelet',
+            category: 'jewelery',
+            description: 'a bracelet',
+            image: 'braceletimage',
+            price: 233,
+            quantity: 3,
+        });
+    });
+});

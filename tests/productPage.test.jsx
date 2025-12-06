@@ -3,6 +3,17 @@ import { screen, render } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import mockRouterConfig from './mockRouteConfig';
+
+vi.mock('../src/cartManager', async () => {
+    const actual = await vi.importActual('../src/cartManager');
+
+    return {
+        ...actual, 
+        addToCart: vi.fn(),
+        removeFromCart: vi.fn(),
+    };
+});
+
 import { removeFromCart, addToCart } from '../src/cartManager';
 
 

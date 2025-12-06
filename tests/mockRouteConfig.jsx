@@ -6,15 +6,19 @@ import { addToCart, removeFromCart } from "../src/cartManager";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 import Cart from "../src/components/Cart/cart";
 
-vi.mock('../src/cartManager', async() => {
-    const actual = vi.importActual('../src/cartManager');
+const cartAction = async ({ request }) => {
+    const formData = await request.formData();
+    const item = JSON.parse(formData.get('item'));
+    const type = formData.get('type');
 
-    return {
-        ...actual,
-        removeFromCart: vi.fn(),
-        addToCart: vi.fn(),
+    console.log('type: ', type, 'item: ', item)
+    
+    if (type === 'add') {
+        addToCart(item);
+    } else if (type === 'remove') {
+        removeFromCart(item);
     };
-});
+}
 
 const routes = [
     {
@@ -99,17 +103,7 @@ const routes = [
 
                             ]
                         ),
-                        action: async ({ request }) => {
-                            const formData = await request.formData();
-                            const item = JSON.parse(formData.get('item'));
-                            const type = formData.get('type');
-                            
-                            if (type === 'add') {
-                                addToCart(item);
-                            } else if (type === 'remove') {
-                                removeFromCart(item);
-                            };
-                        },
+                        action: cartAction,
                     },
                 ],
             },
@@ -138,6 +132,7 @@ const routes = [
                         },
                     ];
                 },
+                action: cartAction,
             }
         ]
     }
