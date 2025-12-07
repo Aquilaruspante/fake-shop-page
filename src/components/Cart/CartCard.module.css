@@ -1,8 +1,19 @@
+.outerContainer {
+    height: 90%;
+    display: flex;
+}
+
+.checkout {
+    min-width: 33%;
+
+}
+
 .container {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 90%;
+    height: 100%;
+    flex-grow: 2;
 }
 
 .productCard {

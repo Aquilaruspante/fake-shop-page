@@ -1,6 +1,6 @@
 import { it, expect, describe, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider, useFetcher } from 'react-router';
+import { createMemoryRouter, RouterProvider } from 'react-router';
 
 import userEvent from '@testing-library/user-event';
 import mockRouterConfig from './mockRouteConfig';
@@ -12,10 +12,11 @@ vi.mock('../src/cartManager', async () => {
         ...actual, 
         addToCart: vi.fn(),
         removeFromCart: vi.fn(),
+        fakeCheckout: vi.fn(),
     };
 });
 
-import { addToCart, removeFromCart } from '../src/cartManager';
+import { addToCart, removeFromCart, fakeCheckout } from '../src/cartManager';
 
 describe('cart rendering', () => {
     it('should render cards', async () => {
@@ -65,7 +66,7 @@ describe('addToCart buttons', async() => {
         render(<RouterProvider router={router} />);
 
         const buttons = await screen.findAllByRole('button');
-        expect(buttons).toHaveLength(4);
+        expect(buttons).toHaveLength(5);
         const [minusButtonOne, plusButtonOne, minusButtonTwo, plusButtonTwo] = buttons;
 
         await user.click(minusButtonOne);
@@ -116,5 +117,32 @@ describe('addToCart buttons', async() => {
             price: 233,
             quantity: 3,
         });
+    });
+});
+
+describe('checkout dialogue', () => {
+    it('should render checkout dialogue', async() => {
+        const router = createMemoryRouter(mockRouterConfig, {
+            initialEntries: ['/cart']
+        });
+        const user = userEvent.setup();
+
+        render(<RouterProvider router={router} />);
+
+        const checkoutDialogue = await screen.findByLabelText('checkout dialogue');
+        expect(checkoutDialogue).toBeInTheDocument();
+
+        const itemsCounter = await screen.findByLabelText('items total');
+        expect(itemsCounter).toBeInTheDocument();
+        expect(itemsCounter).toHaveTextContent('Items: 5');
+
+        const total = await screen.findByLabelText('total price');
+        expect(total).toBeInTheDocument();
+        expect(total).toHaveTextContent('Total: 767 $');
+
+        const checkoutButton = await screen.findByRole('button', { name: 'Checkout'});
+        expect(checkoutButton).toBeInTheDocument();
+        await user.click(checkoutButton);
+        expect(fakeCheckout).toHaveBeenCalled();
     });
 });

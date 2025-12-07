@@ -10,8 +10,6 @@ const cartAction = async ({ request }) => {
     const formData = await request.formData();
     const item = JSON.parse(formData.get('item'));
     const type = formData.get('type');
-
-    console.log('type: ', type, 'item: ', item)
     
     if (type === 'add') {
         addToCart(item);

@@ -53,3 +53,7 @@ export function removeFromCart(item) {
         localStorage.setItem('cart', JSON.stringify(items));
     };
 };
+
+export function fakeCheckout() {
+    alert('Not a real shop!');
+};
