@@ -5,6 +5,7 @@ import ItemContainer from "../src/components/Store/ItemContainer";
 import { addToCart, removeFromCart } from "../src/cartManager";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 import Cart from "../src/components/Cart/cart";
+import ErrorPage from "../src/components/ErrorPage/ErrorPage";
 
 const cartAction = async ({ request }) => {
     const formData = await request.formData();
@@ -22,6 +23,7 @@ const routes = [
     {
         path: '/',
         element: <Root />,
+        errorElement: <ErrorPage />,
         loader: () => {
             return [
                 {

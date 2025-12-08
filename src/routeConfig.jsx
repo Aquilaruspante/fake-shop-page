@@ -5,12 +5,14 @@ import ItemContainer, { loader as itemLoader} from "./components/Store/ItemConta
 import { action as addToCartAction } from "./components/Store/addToCartButton.jsx";
 import Cart from './components/Cart/cart.jsx';
 import ProductPage, { loader as productLoader } from './components/ProductPage/ProductPage.jsx';
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 
 const routes = [
     {
         path: '/',
         element: <Root />,
         loader: cartLoader,
+        errorElement: <ErrorPage />,
         children: [
             { 
                 index: true,

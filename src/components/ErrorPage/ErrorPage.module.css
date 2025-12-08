@@ -1,0 +1,19 @@
+.errorContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.errorContainer h2 {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.errorContainer p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
