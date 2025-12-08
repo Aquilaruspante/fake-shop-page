@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { createMemoryRouter, RouterProvider, useSubmit, useNavigate } from 'react-router';
 import userEvent from '@testing-library/user-event';
@@ -31,6 +31,21 @@ function createRouter(entry) {
         initialEntries: entry,
     });
 };
+
+describe('loadingPage', () => {
+    it('should render loadingPage before data loaded', async() => {
+        const router = createRouter(['/store']);
+
+        render(<RouterProvider router={router} />);
+
+        screen.debug();
+
+        const loading = screen.getByLabelText('loading screen');
+        expect(loading).toBeInTheDocument();
+
+        await waitForElementToBeRemoved(loading);
+    })
+})
 
 describe('second header', () => {
     it('should render navLinks and the search field.', async () => {

@@ -80,27 +80,28 @@ const routes = [
                     {
                         path: 'store/:category?',
                         element: <ItemContainer />,
-                        loader: () => (
-                            [
-                                {
-                                    id: 0,
-                                    title: "jacket",
-                                    price: 0.1,
-                                    description: "confy",
-                                    category: "clothes",
-                                    image: "http://example.com"
-                                },
-                                {
-                                    id: 1,
-                                    title: "skirt",
-                                    price: 0.5,
-                                    description: "beautiful",
-                                    category: "clothes",
-                                    image: "http://example.com"
-                                },
+                        loader: async() => {
+                            await new Promise(resolve => setTimeout(resolve, 200));
+                            return [
+                                    {
+                                        id: 0,
+                                        title: "jacket",
+                                        price: 0.1,
+                                        description: "confy",
+                                        category: "clothes",
+                                        image: "http://example.com"
+                                    },
+                                    {
+                                        id: 1,
+                                        title: "skirt",
+                                        price: 0.5,
+                                        description: "beautiful",
+                                        category: "clothes",
+                                        image: "http://example.com"
+                                    },
 
-                            ]
-                        ),
+                                ]
+                            },
                         action: cartAction,
                     },
                 ],

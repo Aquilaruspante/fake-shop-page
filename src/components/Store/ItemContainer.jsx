@@ -1,6 +1,7 @@
-import { useLoaderData, useNavigation, useOutletContext } from "react-router";
+import { useLoaderData, useOutletContext } from "react-router";
 import Card from "./Card";
 import styles from './Store.module.css';
+import LoadingPage from "../Loading/LoadingPage";
 
 export async function loader({ request, params }) {
     const url = new URL(request.url);
@@ -35,18 +36,15 @@ export async function loader({ request, params }) {
         const filteredData = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
         return filteredData;
     }
+
     return data;
 } 
 
 export default function ItemContainer() {
     const data = useLoaderData();
-    const navigation = useNavigation();
     const cart = useOutletContext()
 
-    const isLoading = navigation.state === 'loading';
-
     return (
-        isLoading ? <p>Loading...</p> :
         <ul className={styles.container}>
             {data.map((item) => (
                 <li key={item.id}><Card item={item} cart={cart} /></li>
