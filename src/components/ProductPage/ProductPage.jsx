@@ -6,7 +6,31 @@ import AddToCartButton from "../Store/addToCartButton";
 export async function loader({ params }) {
     const { productId } =  params;
     const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
-    const data = await response.json();
+    console.log('response', response.ok);
+    if (!response.ok) {
+        throw new Response('', {
+            status: 404,
+            statusText: 'Oops... Item Not Found!!!',
+        });
+    };
+    try {
+        const data = await response.json();
+        console.log('data', data);
+
+        if (!data || !data.id) {
+            console.log('trhowing error now');
+            throw new Response('', {
+                status: 404,
+                statusText: 'Oops... Item Not Found!!!',
+            });
+        }
+    } catch (error) {
+        throw new Response('', {
+            status: 404,
+            statusText: 'Oops... Item Not Found!!!',
+        });
+    };
+    
     return data;
 };
 

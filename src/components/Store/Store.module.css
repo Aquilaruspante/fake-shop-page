@@ -61,3 +61,11 @@ img:hover {
 h2:hover {
     cursor: pointer;
 }
+
+.noResultsMessage {
+    width: 100%;
+    text-align: center;
+    margin-top: 20%;
+    font-size: 1.8rem;
+    color: var(--text-color);
+}

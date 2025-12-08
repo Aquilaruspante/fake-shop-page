@@ -1,9 +1,8 @@
 import './root.css';
 import { House, Handbag, ShoppingCart } from 'lucide-react';
-import { Outlet, NavLink, useLoaderData, useNavigation } from 'react-router';
+import { Outlet, NavLink, useLoaderData } from 'react-router';
 import { getCart } from '../../cartManager';
 import CartNotifications from '../Store/CartNotification';
-import LoadingPage from '../Loading/LoadingPage';
 
 export function loader() {
     return getCart();
@@ -11,9 +10,6 @@ export function loader() {
 
 export default function Root() {
     const cart = useLoaderData();
-    const navigation = useNavigation();
-
-    const isLoading = navigation.state === 'loading';
 
     return (
         <>
@@ -43,7 +39,7 @@ export default function Root() {
                 </nav>
             </header>
             <main>
-                {isLoading ? <LoadingPage /> : <Outlet context={cart} />}
+                <Outlet context={cart} />
             </main>
         </>
     );

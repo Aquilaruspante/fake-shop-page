@@ -7,7 +7,7 @@ export default function ErrorPage() {
     return (
         <div className={styles.errorContainer}>
             <h2 aria-label="status">{error.status}</h2>
-            <p aria-label="error message">{error.data}</p>
+            <p aria-label="error message">{error.data || error.statusText}</p>
         </div>
     )
 }

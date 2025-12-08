@@ -27,9 +27,22 @@ export async function loader({ request, params }) {
 
 
     const response = await fetch('https://fakestoreapi.com/products');
+    if (!response.ok) {
+        throw new Response('', {
+            status: 404,
+            statusText: 'Failed to fetch data',
+        });
+    };
+
     const data = await response.json();
     if (category) {
-        console.log(postProcessedCategory);
+        if (!postProcessedCategory) {
+            throw new Response('', {
+                status: 404,
+                statusText: 'Oops... wrong category!!!',
+            });
+        };
+
         return data.filter(item => item.category === postProcessedCategory)
     }
     if (query) {
@@ -42,13 +55,20 @@ export async function loader({ request, params }) {
 
 export default function ItemContainer() {
     const data = useLoaderData();
-    const cart = useOutletContext()
+    const { cart, isLoading } = useOutletContext();
 
-    return (
-        <ul className={styles.container}>
-            {data.map((item) => (
-                <li key={item.id}><Card item={item} cart={cart} /></li>
-            ))}
-        </ul>
+    return ( 
+        <>
+            {isLoading ? <LoadingPage /> :
+            <ul className={styles.container}>
+                {data.length 
+                    ?
+                data.map((item) => (
+                    <li key={item.id}><Card item={item} cart={cart} /></li>
+                )) 
+                :
+                <p className={styles.noResultsMessage}>Oops... your query didn't find any item</p>}
+            </ul>}
+        </>
     )
 }
