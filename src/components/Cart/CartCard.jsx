@@ -13,7 +13,7 @@ export default function CartCard({ item, cart }) {
                 <p aria-label='price'>Price: {item.price} $</p>
                 <div className={styles.lastLine}>
                     <div className={styles.quantity}>Quantity: {item.quantity}</div>
-                    <div aria-label='total'>Total: {parseFloat(item.price) * item.quantity} $</div>
+                    <div aria-label='total'>Total: {parseFloat(item.price).toFixed(2) * item.quantity} $</div>
                     <div className={cardStyles.btn}>
                         <AddToCartButton item={item} cart={cart} />
                     </div>

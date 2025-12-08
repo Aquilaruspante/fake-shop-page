@@ -138,7 +138,7 @@ describe('checkout dialogue', () => {
 
         const total = await screen.findByLabelText('total price');
         expect(total).toBeInTheDocument();
-        expect(total).toHaveTextContent('Total: 767 $');
+        expect(total).toHaveTextContent('Total: 767.00 $');
 
         const checkoutButton = await screen.findByRole('button', { name: 'Checkout'});
         expect(checkoutButton).toBeInTheDocument();

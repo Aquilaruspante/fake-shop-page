@@ -1,11 +1,37 @@
 .outerContainer {
-    height: 90%;
+    height: 100%;
     display: flex;
 }
 
 .checkout {
-    min-width: 33%;
+    margin-top: 50px;
+    position: sticky;
+    top: 50px;
+    width: 33%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 15px;
+}
 
+.checkout p{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.checkout button {
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--background-color);
+    height: 25px;
+    border-radius: 15px;
+    width: 80%;
+    align-self: center;
 }
 
 .container {
@@ -14,12 +40,38 @@
     gap: 20px;
     height: 100%;
     flex-grow: 2;
+    width: 66%;
+    align-self: flex-start;
+    
+    scrollbar-width: none; /* Firefox */
+    scrollbar-color: transparent transparent;
 }
+
+.container:hover {
+    scrollbar-width: thin;
+}
+
+.container::-webkit-scrollbar {
+    width: 2px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.container:hover::-webkit-scrollbar-thumb {
+    background: #888; /* colore che vuoi */
+}
+
 
 .productCard {
     height: 200px;
     display: flex;
-    width: 50%;
+    width: 100%;
     min-width: 400px;
 }
 

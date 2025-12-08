@@ -17,8 +17,10 @@ export async function action({ request }) {
 
 export default function AddToCartButton({ item, cart }) {
     const fetcher = useFetcher();
-
-    const cartItem = cart.find(el => el.id === item.id);
+     
+    let cartItem = null;
+    if (cart) cartItem = cart.find(el => el.id === item.id);
+    
     let quantity;
 
     if (cartItem) {

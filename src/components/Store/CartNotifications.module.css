@@ -5,11 +5,13 @@
     bottom: 18px;
     background-color: var(--accent-color);
     color: var(--background-color);
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     text-align: center;
     font-size: 0.9rem;
+    box-sizing: border-box;
+    padding: 1px;
 }
 
 .hidden {
