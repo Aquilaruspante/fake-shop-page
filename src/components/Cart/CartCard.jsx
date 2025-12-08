@@ -9,8 +9,8 @@ export default function CartCard({ item, cart }) {
                 <img className={styles.image} src={item.image} alt="item image" />
             </div>
             <div className={styles.rightSide}>
-                <h2 aria-label="title">{item.title}</h2>
-                <p aria-label='price'>Price: {item.price} $</p>
+                <h2 aria-label="title" className={styles.cardTitle}>{item.title}</h2>
+                <p aria-label='price' className={styles.cardPrice}>Price: {item.price} $</p>
                 <div className={styles.lastLine}>
                     <div className={styles.quantity}>Quantity: {item.quantity}</div>
                     <div aria-label='total'>Total: {parseFloat(item.price).toFixed(2) * item.quantity} $</div>
