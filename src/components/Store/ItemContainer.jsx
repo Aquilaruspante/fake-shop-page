@@ -1,4 +1,5 @@
 import { useLoaderData, useOutletContext } from "react-router";
+import { useEffect } from "react";
 import Card from "./Card";
 import styles from './Store.module.css';
 import LoadingPage from "../Loading/LoadingPage";
@@ -42,14 +43,15 @@ export async function loader({ request, params }) {
                 statusText: 'Oops... wrong category!!!',
             });
         };
-
-        return data.filter(item => item.category === postProcessedCategory)
+        const filteredData = data.filter(item => item.category === postProcessedCategory);
+        return filteredData;
     }
     if (query) {
         const filteredData = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
         return filteredData;
     }
 
+    
     return data;
 } 
 
