@@ -7,7 +7,7 @@ import LoadingPage from "../Loading/LoadingPage";
 export async function loader({ request, params }) {
     const url = new URL(request.url);
     const { category } = params;
-    const query = url.searchParams.get('q');
+    const query = url.searchParams.get('q') || '';
 
     let postProcessedCategory;
 
@@ -44,28 +44,34 @@ export async function loader({ request, params }) {
             });
         };
         const filteredData = data.filter(item => item.category === postProcessedCategory);
-        return filteredData;
+        
+        return { filteredData, query };
     }
     if (query) {
         const filteredData = data.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
-        return filteredData;
+
+        return { filteredData, query };
     }
 
-    
-    return data;
+    const filteredData = data;
+    return { filteredData, query };
 } 
 
 export default function ItemContainer() {
-    const data = useLoaderData();
-    const { cart, isLoading } = useOutletContext();
+    const { filteredData, query } = useLoaderData();
+    const { cart, isLoading, setSearchInput } = useOutletContext();
+
+    useEffect(() => {
+        setSearchInput(query);
+    }, [query]);
 
     return ( 
         <>
             {isLoading ? <LoadingPage /> :
             <ul className={styles.container}>
-                {data.length 
+                {filteredData.length 
                     ?
-                data.map((item) => (
+                filteredData.map((item) => (
                     <li key={item.id}><Card item={item} cart={cart} /></li>
                 )) 
                 :
