@@ -8,9 +8,11 @@ export default function Store() {
     const navigation = useNavigation();
     const [searchInput, setSearchInput] = useState('');
 
+    let timeOut;
+    
     function manageOnChange(e) {
         setSearchInput(e.target.value);
-        submit(e.currentTarget.form); 
+        submit(e.currentTarget.form, { replace: true }); 
     };
 
     const isLoading = navigation.state === 'loading';
@@ -18,8 +20,7 @@ export default function Store() {
     return(
         <>
             <nav className={styles.secondHeader}>
-                <NavLink 
-                    className={({ isActive }) => isActive ? `active ${styles.a}` : styles.a} to={'/store'} onClick={() => setSearchInput('')}>All</NavLink>
+                <NavLink className={({ isActive }) => isActive ? `active ${styles.a}` : styles.a} to={'/store'} onClick={() => setSearchInput('')}>All</NavLink>
                 <NavLink className={({ isActive }) => isActive ? `${styles.active} ${styles.a}` : styles.a} to={'/store/mensclothing'} onClick={() => setSearchInput('')}>Men's clothing</NavLink>
                 <NavLink className={({ isActive }) => isActive ? `${styles.active} ${styles.a}` : styles.a} to={'/store/womensclothing'} onClick={() => setSearchInput('')}>Women's clothing</NavLink>
                 <NavLink className={({ isActive }) => isActive ? `${styles.active} ${styles.a}` : styles.a} to={'/store/jewelery'} onClick={() => setSearchInput('')}>Jewelery</NavLink>
