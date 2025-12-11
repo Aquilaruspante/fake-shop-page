@@ -1,19 +1,34 @@
 import styles from './Store.module.css';
-import { Form, NavLink, Outlet, useSubmit, useOutletContext, useNavigation } from "react-router";
-import { useState } from 'react';
+import { Form, NavLink, Outlet, useSubmit, useOutletContext, useNavigation, useSearchParams } from "react-router";
+import { useEffect, useState } from 'react';
 
 export default function Store() {
     const submit = useSubmit();
     const cart = useOutletContext();
     const navigation = useNavigation();
     const [searchInput, setSearchInput] = useState('');
+    const { q } = useSearchParams();
 
-    let timeOut;
-    
     function manageOnChange(e) {
-        setSearchInput(e.target.value);
-        submit(e.currentTarget.form, { replace: true }); 
+        setSearchInput(e.target.value); 
     };
+
+    useEffect(() => {
+        setSearchInput(q);
+    }, [q]);
+
+    useEffect(() => {
+        const form = document.querySelector('form[role="search"]');
+        if (!form) return;
+
+        const timeOutId = setTimeout(() => {
+            if (searchInput !== '') {
+                submit(form, { replace: true });
+            };
+        }, 150);
+
+        return () => clearTimeout(timeOutId);
+    }, [searchInput, submit]);
 
     const isLoading = navigation.state === 'loading';
 
@@ -33,7 +48,7 @@ export default function Store() {
                 </Form>
             </nav>
             <>
-                <Outlet context={{ cart, isLoading, setSearchInput }} />
+                <Outlet context={{ cart, isLoading }} />
             </>
         </>
         

@@ -58,12 +58,8 @@ export async function loader({ request, params }) {
 } 
 
 export default function ItemContainer() {
-    const { filteredData, query } = useLoaderData();
-    const { cart, isLoading, setSearchInput } = useOutletContext();
-
-    useEffect(() => {
-        setSearchInput(query);
-    }, [query]);
+    const { filteredData } = useLoaderData();
+    const { cart, isLoading } = useOutletContext();
 
     return ( 
         <>
