@@ -74,3 +74,16 @@ main {
     flex-direction: column;
     justify-content: center;
 }
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+footer a {
+    color: var(--text-color);
+}

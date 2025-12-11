@@ -41,6 +41,9 @@ export default function Root() {
             <main>
                 <Outlet context={cart} />
             </main>
+            <footer>
+                <p>@Calogero-Salvaggio, <a href="https://github.com/Aquilaruspante">Github</a></p>
+            </footer>
         </>
     );
 };
