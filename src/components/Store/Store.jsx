@@ -12,23 +12,19 @@ export default function Store() {
     const q = searchParams.get('q') || '';
 
     useEffect(() => {
-        if (q === '') setSearchInput(q);
+        setSearchInput(q);
     }, [q]);
 
     function manageOnChange(e) {
         setSearchInput(e.target.value); 
     };
 
-  
-
     useEffect(() => {
         const form = document.querySelector('form[role="search"]');
         if (!form) return;
 
         const timeOutId = setTimeout(() => {
-            if (searchInput !== '') {
                 submit(form, { replace: true });
-            };
         }, 150);
 
         return () => clearTimeout(timeOutId);
