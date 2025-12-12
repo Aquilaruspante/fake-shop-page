@@ -30,7 +30,7 @@ export default function Cart() {
             <div className={styles.checkout} aria-label="checkout dialogue">
                 <p aria-label="items total">Items: {totalItems}</p>
                 <p aria-label="total price">Total: {parseFloat(totalPrice).toFixed(2)} $</p>
-                <button onClick={fakeCheckout}>Checkout</button>
+                <button className={styles.checkoutButton} onClick={fakeCheckout}>Checkout</button>
             </div>
         </div>
         

@@ -81,3 +81,9 @@
 .cardPrice {
     font-size: 1.1rem;
 }
+
+.checkoutButton:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 2px var(--shadow);
+    transition: 0.2s;
+}
