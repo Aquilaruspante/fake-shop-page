@@ -7,15 +7,19 @@ export default function Store() {
     const cart = useOutletContext();
     const navigation = useNavigation();
     const [searchInput, setSearchInput] = useState('');
-    const { q } = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    const q = searchParams.get('q') || '';
+
+    useEffect(() => {
+        if (q === '') setSearchInput(q);
+    }, [q]);
 
     function manageOnChange(e) {
         setSearchInput(e.target.value); 
     };
 
-    useEffect(() => {
-        setSearchInput(q);
-    }, [q]);
+  
 
     useEffect(() => {
         const form = document.querySelector('form[role="search"]');
