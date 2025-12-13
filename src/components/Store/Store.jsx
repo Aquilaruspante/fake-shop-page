@@ -1,6 +1,6 @@
 import styles from './Store.module.css';
-import { Form, NavLink, Outlet, useSubmit, useOutletContext, useNavigation, useSearchParams } from "react-router";
-import { useEffect, useState } from 'react';
+import { Form, NavLink, Outlet, useSubmit, useOutletContext, useNavigation, useSearchParams, useLocation, useFetcher } from "react-router";
+import { useEffect, useState, useRef } from 'react';
 
 export default function Store() {
     const submit = useSubmit();
@@ -8,11 +8,16 @@ export default function Store() {
     const navigation = useNavigation();
     const [searchInput, setSearchInput] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
+    const prevLocationRef = useRef(location.pathname);
     
     const q = searchParams.get('q') || '';
 
     useEffect(() => {
-        setSearchInput(q);
+        if (prevLocationRef.current !== location.pathname) {
+            setSearchInput(q);
+            prevLocationRef.current = location.pathname;
+        }
     }, [q]);
 
     function manageOnChange(e) {
@@ -23,11 +28,15 @@ export default function Store() {
         const form = document.querySelector('form[role="search"]');
         if (!form) return;
 
-        const timeOutId = setTimeout(() => {    
-            submit(form, { replace: true });
-        }, 150);
+        const timeOutId = setTimeout(() => {
+            if (location.pathname === '/store' || searchInput !== '') {    
+                submit(form, { replace: true });
+            }
+        }, 300);
 
-        return () => clearTimeout(timeOutId);
+        return () => {
+            clearTimeout(timeOutId);
+        }
     }, [searchInput, submit]);
 
     const isLoading = navigation.state === 'loading';
