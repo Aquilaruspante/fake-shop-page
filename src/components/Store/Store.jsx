@@ -32,7 +32,7 @@ export default function Store() {
             if (location.pathname === '/store' || searchInput !== '') {    
                 submit(form, { replace: true });
             }
-        }, 300);
+        }, 200);
 
         return () => {
             clearTimeout(timeOutId);
