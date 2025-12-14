@@ -9,9 +9,9 @@
     height: 18px;
     border-radius: 50%;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     box-sizing: border-box;
-    padding: 1px;
+    padding: 3px;
 }
 
 .hidden {

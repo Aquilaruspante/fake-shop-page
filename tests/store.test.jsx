@@ -2,8 +2,8 @@ import { render, screen, waitForElementToBeRemoved } from '@testing-library/reac
 import { describe, it, expect, vi } from 'vitest';
 import { createMemoryRouter, RouterProvider, useSubmit, useNavigate } from 'react-router';
 import userEvent from '@testing-library/user-event';
-import mockRouteConfig from './mockRouteConfig';
 import { removeFromCart, addToCart } from '../src/cartManager';
+import mockRouteConfig from './mockRouteConfig.jsx';
 
 vi.mock('react-router', async() => {
     const actual = await vi.importActual('react-router');

@@ -84,7 +84,8 @@ const routes = [
                         element: <ItemContainer />,
                         loader: async() => {
                             await new Promise(resolve => setTimeout(resolve, 200));
-                            return [
+                            return {
+                                filteredData: [
                                     {
                                         id: 0,
                                         title: "jacket",
@@ -102,8 +103,10 @@ const routes = [
                                         image: "http://example.com"
                                     },
 
-                                ]
-                            },
+                                ],
+                                query: '',
+                            }            
+                        },
                         action: cartAction,
                     },
                 ],

@@ -25,7 +25,7 @@ export default function Cart() {
     return (
         <div className={styles.outerContainer}>
             <ul className={styles.container}>
-                {data && data.map((item) => <li key={item.id}><CartCard item={item} cart={data} /></li>)}
+                {data.length ? data.map((item) => <li key={item.id}><CartCard item={item} cart={data} /></li>) : <p className={styles.noItems}>No items in your cart...</p>}
             </ul>
             <div className={styles.checkout} aria-label="checkout dialogue">
                 <p aria-label="items total">Items: {totalItems}</p>
