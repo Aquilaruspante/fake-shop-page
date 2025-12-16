@@ -36,9 +36,16 @@ describe('loadingPage', () => {
     it('should render loadingPage before data loaded', async() => {
         const router = createRouter(['/store']);
 
+        console.log(router.state);                                               // debug line
+        console.log(router.state.location);                                      // debug line
+
         render(<RouterProvider router={router} />);
 
-        screen.debug();
+        screen.debug();                                                          // debug line
+
+        await new Promise(r => setTimeout(r, 100));                              // debug line
+
+        screen.debug();                                                          // debug line   
 
         const loading = screen.getByLabelText('loading screen');
         expect(loading).toBeInTheDocument();
