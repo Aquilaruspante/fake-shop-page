@@ -83,7 +83,7 @@ const routes = [
                         path: 'store/:category?',
                         element: <ItemContainer />,
                         loader: async() => {
-                            await new Promise(resolve => setTimeout(resolve, 200));
+                            await new Promise(resolve => setTimeout(resolve, 400));
                             return {
                                 filteredData: [
                                     {

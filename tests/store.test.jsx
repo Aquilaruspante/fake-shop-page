@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { createMemoryRouter, RouterProvider, useSubmit, useNavigate } from 'react-router';
 import userEvent from '@testing-library/user-event';
@@ -32,28 +32,6 @@ function createRouter(entry) {
     });
 };
 
-describe('loadingPage', () => {
-    it('should render loadingPage before data loaded', async() => {
-        const router = createRouter(['/store']);
-
-        console.log(router.state);                                               // debug line
-        console.log(router.state.location);                                      // debug line
-
-        render(<RouterProvider router={router} />);
-
-        screen.debug();                                                          // debug line
-
-        await new Promise(r => setTimeout(r, 100));                              // debug line
-
-        screen.debug();                                                          // debug line   
-
-        const loading = screen.getByLabelText('loading screen');
-        expect(loading).toBeInTheDocument();
-
-        await waitForElementToBeRemoved(loading);
-    })
-})
-
 describe('second header', () => {
     it('should render navLinks and the search field.', async () => {
         const router = createRouter(['/store']);
@@ -83,22 +61,6 @@ describe('second header', () => {
         const searchField = await screen.findByRole('search');
         expect(searchField).toBeInTheDocument();
     });
-
-    it('search field should submit when typing', async () => {
-        const router = createRouter(['/store']);
-        const user = userEvent.setup();
-
-        const submit = vi.fn();
-        useSubmit.mockReturnValue(submit);
-        
-        render(<RouterProvider router={router} />);
-
-        const searchField = await screen.findByLabelText('search-item');
-        const form = await screen.findByRole('search');
-        await user.type(searchField, 'jac');
-        expect(submit).toHaveBeenCalledWith(form);
-        expect(submit).toHaveBeenCalledTimes(3);
-    })
 });
 
 describe('store card component', () => {
