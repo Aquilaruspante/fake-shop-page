@@ -69,3 +69,9 @@ h2:hover {
     font-size: 1.8rem;
     color: var(--text-color);
 }
+
+@media (max-width: 880px) {
+    .a {
+        display: none;
+    }
+}
