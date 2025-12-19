@@ -10,6 +10,7 @@ export default function Store() {
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
     const prevLocationRef = useRef(location.pathname);
+    const prevSearchInputRef = useRef('');
     
     const q = searchParams.get('q') || '';
 
@@ -29,9 +30,9 @@ export default function Store() {
         if (!form) return;
 
         const timeOutId = setTimeout(() => {
-            if (location.pathname === '/store' || searchInput !== '') {    
-                console.log('submitting');
+            if (prevSearchInputRef.current !== searchInput) {    
                 submit(form, { replace: true });
+                prevSearchInputRef.current = searchInput;
             }
         }, 200);
 
