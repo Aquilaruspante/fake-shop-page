@@ -30,6 +30,7 @@ export default function Store() {
 
         const timeOutId = setTimeout(() => {
             if (location.pathname === '/store' || searchInput !== '') {    
+                console.log('submitting');
                 submit(form, { replace: true });
             }
         }, 200);

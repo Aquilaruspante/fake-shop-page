@@ -10,7 +10,6 @@ vi.mock('react-router', async() => {
 
     return {
         ...actual,
-        useSubmit: vi.fn(),
         useNavigate: vi.fn(),
     };
 });
