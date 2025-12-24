@@ -3,10 +3,11 @@
     display: flex;
     flex-wrap: wrap;
     height: 90%;
-    justify-content: space-between;
+    justify-content: start;
     gap: 32px;
     row-gap: 50px;
     margin-top: 50px;
+    padding: 25px;
 }
 
 .secondHeader {
@@ -73,5 +74,24 @@ h2:hover {
 @media (max-width: 880px) {
     .a {
         display: none;
+    }
+}
+
+@media (max-width: 1300px) {
+    .container {
+        padding-right: 50px;
+        padding-left: 50px;
+    } 
+}
+
+@media (max-width: 1100px) {
+    .container {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        justify-content: space-around;
     }
 }
