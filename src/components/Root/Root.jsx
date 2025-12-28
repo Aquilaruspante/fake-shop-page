@@ -1,6 +1,6 @@
 import './root.css';
 import { House, Handbag, ShoppingCart, Menu } from 'lucide-react';
-import { Outlet, NavLink, useLoaderData } from 'react-router';
+import { Outlet, NavLink, useLoaderData, Link } from 'react-router';
 import { getCart } from '../../cartManager';
 import CartNotifications from '../Store/CartNotification';
 
@@ -40,6 +40,11 @@ export default function Root() {
                 </nav>
             </header>
             <main>
+                <div className='dropdown'>
+                    <Link to='/' className='dropdown-item' >Home <House color='#ff7b54' /></Link>
+                    <Link to='/store' className='dropdown-item' >Cart <Handbag color='#ff7b54' /></Link>
+                    <Link to='/cart' className='dropdown-item' >Cart <ShoppingCart color='#ff7b54' /></Link>
+                </div>
                 <Outlet context={cart} />
             </main>
             <footer>
