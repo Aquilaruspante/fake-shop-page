@@ -97,7 +97,16 @@ footer a {
 
 @media (max-width: 1300px) {
     #root {
-        max-width: 950px;
+        max-width: 1200px;
+        
+    }    
+}
+
+@media (max-width: 1200px) {
+    #root {
+        max-width: 1200px;
+        margin-right: 25px;
+        margin-left: 45px;
     }    
 }
 
@@ -125,6 +134,18 @@ footer a {
     }
 }
 
+@media (max-width: 750px) {
+    #root {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 650px) {
+    #root {
+        max-width: 500px;
+    }
+}
+
 @media (max-width: 600px) {
     #root {
         max-width: 400px;
@@ -134,5 +155,23 @@ footer a {
 @media (max-width: 400px) {
     #root {
         max-width: 300px;
+    }
+}
+
+@media (max-width: 450px) {
+    #root {
+        max-width: 380px;
+    }
+}
+
+@media (min-width: 600px) {
+    .accordion-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 599px) {
+    .links {
+        display: none;
     }
 }

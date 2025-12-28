@@ -79,16 +79,13 @@ h2:hover {
 
 @media (max-width: 1300px) {
     .container {
-        padding-right: 50px;
-        padding-left: 50px;
+        padding-right: 25px;
+        padding-left: 25px;
     } 
 }
 
-@media (max-width: 1100px) {
-    .container {
-        padding: 25px;
-    }
-}
+
+
 
 @media (max-width: 1000px) {
     .container {

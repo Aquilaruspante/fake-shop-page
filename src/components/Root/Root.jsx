@@ -1,5 +1,5 @@
 import './root.css';
-import { House, Handbag, ShoppingCart } from 'lucide-react';
+import { House, Handbag, ShoppingCart, Menu } from 'lucide-react';
 import { Outlet, NavLink, useLoaderData } from 'react-router';
 import { getCart } from '../../cartManager';
 import CartNotifications from '../Store/CartNotification';
@@ -36,6 +36,7 @@ export default function Root() {
                             <CartNotifications cart={cart} />
                         </div>
                     </div>
+                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu'  />
                 </nav>
             </header>
             <main>
