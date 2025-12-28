@@ -164,6 +164,12 @@ footer a {
     }
 }
 
+@media (max-width: 400px) {
+    #root {
+        max-width: 300px;
+    }
+}
+
 @media (min-width: 600px) {
     .accordion-menu {
         display: none;

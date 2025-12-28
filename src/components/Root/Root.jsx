@@ -35,7 +35,7 @@ export default function Root() {
                             </NavLink>
                             <CartNotifications cart={cart} />
                         </div>
-                    </div>
+                    </div>                    
                     <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu'  />
                 </nav>
             </header>
