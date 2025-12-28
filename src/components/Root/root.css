@@ -61,6 +61,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: start;
+    position: relative;
 }
 
 .manropeFont {
@@ -87,6 +88,35 @@ footer {
 
 footer a {
     color: var(--text-color);
+}
+
+.accordion-menu:hover {
+    cursor: pointer;
+    outline: 1px solid var(--border);
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    box-shadow: 2px 2px 2px var(--shadow);
+    top: 0px;
+    padding: 5px;
+}
+
+.dropdown-item {
+    padding: 5px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+    width: 100px;
+}
+
+.non-visible {
+    display: none;
 }
 
 @media (min-width: 1300px) {
@@ -174,6 +204,10 @@ footer a {
     .accordion-menu {
         display: none;
     }
+
+    .dropdown {
+        display: none;
+    }
 }
 
 @media (max-width: 599px) {
@@ -181,3 +215,4 @@ footer a {
         display: none;
     }
 }
+

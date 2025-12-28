@@ -1,4 +1,5 @@
 import './root.css';
+import { useState } from 'react';
 import { House, Handbag, ShoppingCart, Menu } from 'lucide-react';
 import { Outlet, NavLink, useLoaderData, Link } from 'react-router';
 import { getCart } from '../../cartManager';
@@ -10,6 +11,11 @@ export function loader() {
 
 export default function Root() {
     const cart = useLoaderData();
+    const [isMenuActive, setIsMenuActive] = useState(false);
+
+    function handleMenuClick() {
+        setIsMenuActive(!isMenuActive);
+    };
 
     return (
         <>
@@ -35,15 +41,15 @@ export default function Root() {
                             </NavLink>
                             <CartNotifications cart={cart} />
                         </div>
-                    </div>                    
-                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu'  />
+                    </div>       
+                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />             
                 </nav>
             </header>
             <main>
-                <div className='dropdown'>
-                    <Link to='/' className='dropdown-item' >Home <House color='#ff7b54' /></Link>
-                    <Link to='/store' className='dropdown-item' >Cart <Handbag color='#ff7b54' /></Link>
-                    <Link to='/cart' className='dropdown-item' >Cart <ShoppingCart color='#ff7b54' /></Link>
+                <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
+                    <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
+                    <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
+                    <Link to='/cart' className='dropdown-item' ><p>Cart</p><ShoppingCart color='#ff7b54' /></Link>
                 </div>
                 <Outlet context={cart} />
             </main>
