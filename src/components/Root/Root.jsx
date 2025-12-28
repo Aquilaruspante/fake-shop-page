@@ -14,7 +14,9 @@ export default function Root() {
     const [isMenuActive, setIsMenuActive] = useState(false);
 
     function handleMenuClick() {
-        setIsMenuActive(!isMenuActive);
+        setTimeout(() => {
+            setIsMenuActive(!isMenuActive);
+        }, 100);
     };
 
     return (
@@ -42,15 +44,15 @@ export default function Root() {
                             <CartNotifications cart={cart} />
                         </div>
                     </div>       
-                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />             
+                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />  
+                    <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
+                        <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
+                        <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
+                        <Link to='/cart' className='dropdown-item' ><p>Cart</p><ShoppingCart color='#ff7b54' /></Link>
+                    </div>           
                 </nav>
             </header>
             <main>
-                <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
-                    <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
-                    <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
-                    <Link to='/cart' className='dropdown-item' ><p>Cart</p><ShoppingCart color='#ff7b54' /></Link>
-                </div>
                 <Outlet context={cart} />
             </main>
             <footer>

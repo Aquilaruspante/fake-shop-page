@@ -30,6 +30,7 @@ header {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    position: relative;
 }
 
 nav {
@@ -61,7 +62,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    position: relative;
 }
 
 .manropeFont {
@@ -100,9 +100,11 @@ footer a {
     flex-direction: column;
     position: absolute;
     right: 0px;
-    box-shadow: 2px 2px 2px var(--shadow);
-    top: 0px;
+    box-shadow: 1px 1px 1px var(--shadow);
+    top: 7vh;
     padding: 5px;
+    background-color: var(--background-color);
+    border-radius: 5px;
 }
 
 .dropdown-item {
