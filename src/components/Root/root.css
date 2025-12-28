@@ -95,6 +95,11 @@ footer a {
     outline: 1px solid var(--border);
 }
 
+.accordion-container {
+    position: relative;
+    left: 15px;
+}
+
 .dropdown {
     display: flex;
     flex-direction: column;
@@ -105,6 +110,7 @@ footer a {
     padding: 5px;
     background-color: var(--background-color);
     border-radius: 5px;
+    
 }
 
 .dropdown-item {
@@ -115,6 +121,11 @@ footer a {
     align-items: center;
     color: var(--text-color);
     width: 100px;
+}
+
+.dropdown-cart {
+    position: relative;
+    left: 15px;
 }
 
 .non-visible {
@@ -203,7 +214,7 @@ footer a {
 }
 
 @media (min-width: 600px) {
-    .accordion-menu {
+    .accordion-container {
         display: none;
     }
 

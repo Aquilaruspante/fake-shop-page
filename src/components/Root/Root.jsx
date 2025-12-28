@@ -1,7 +1,7 @@
 import './root.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { House, Handbag, ShoppingCart, Menu } from 'lucide-react';
-import { Outlet, NavLink, useLoaderData, Link } from 'react-router';
+import { Outlet, NavLink, useLoaderData, Link, useLocation } from 'react-router';
 import { getCart } from '../../cartManager';
 import CartNotifications from '../Store/CartNotification';
 
@@ -12,12 +12,21 @@ export function loader() {
 export default function Root() {
     const cart = useLoaderData();
     const [isMenuActive, setIsMenuActive] = useState(false);
+    const location = useLocation();
+    const prevLocationRef = useRef(location.pathname);
 
     function handleMenuClick() {
         setTimeout(() => {
             setIsMenuActive(!isMenuActive);
         }, 100);
     };
+
+    useEffect(() => {
+        if (location.pathname !== prevLocationRef.current) {
+            setIsMenuActive(false);
+            prevLocationRef.current = location.pathname;
+        }
+    }, [location])
 
     return (
         <>
@@ -43,12 +52,22 @@ export default function Root() {
                             </NavLink>
                             <CartNotifications cart={cart} />
                         </div>
+                    </div>
+                    <div className='accordion-container'>
+                        <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />
+                        <CartNotifications cart={cart} isMenuActive={isMenuActive} />
                     </div>       
-                    <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />  
+                      
                     <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
                         <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
                         <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
-                        <Link to='/cart' className='dropdown-item' ><p>Cart</p><ShoppingCart color='#ff7b54' /></Link>
+                        <Link to='/cart' className='dropdown-item' >
+                            <p>Cart</p>
+                            <div className='dropdown-cart'>
+                                <ShoppingCart color='#ff7b54' />
+                                <CartNotifications cart={cart} />
+                            </div>
+                        </Link>
                     </div>           
                 </nav>
             </header>
