@@ -12,7 +12,7 @@ export default function CartCard({ item, cart }) {
                 <img className={styles.image} src={item.image} alt="item image" onClick={() => navigate(`/store/products/${item.id}`)}/>
             </div>
             <div className={styles.rightSide}>
-                <h2 aria-label="title" className={styles.cardTitle} onClick={() => navigate(`/store/products/${item.id}`)}>{item.title}</h2>
+                <h2 aria-label="title" className={styles.cardTitle} onClick={() => navigate(`/store/products/${item.id}`)}>{item.title.slice(0, 40)}...</h2>
                 <p aria-label='price' className={styles.cardPrice}>Price: {item.price} $</p>
                 <div className={styles.lastLine}>
                     <div className={styles.quantity}>Quantity: {item.quantity}</div>
