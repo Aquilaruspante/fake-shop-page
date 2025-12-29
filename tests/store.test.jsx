@@ -107,7 +107,8 @@ describe('store card component', () => {
         expect(quantityOne).toHaveTextContent('2');
         expect(quantityTwo).toHaveTextContent('3');
 
-        const cartNotification = await screen.findByLabelText('total-items');
+        const cartNotificationArray = await screen.findAllByLabelText('total-items');
+        const cartNotification = cartNotificationArray[0];
         expect(cartNotification).toBeInTheDocument();
         expect(cartNotification).toHaveTextContent('5');
     });

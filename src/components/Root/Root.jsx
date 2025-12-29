@@ -56,8 +56,7 @@ export default function Root() {
                     <div className='accordion-container'>
                         <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />
                         <CartNotifications cart={cart} isMenuActive={isMenuActive} />
-                    </div>       
-                      
+                    </div>                             
                     <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
                         <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
                         <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
