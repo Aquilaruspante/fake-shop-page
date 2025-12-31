@@ -57,20 +57,20 @@ export default function Root() {
                         <Menu color='#ff7b54' aria-label='navigation menu' className='accordion-menu' onClick={handleMenuClick} />
                         <CartNotifications cart={cart} isMenuActive={isMenuActive} />
                     </div>                             
-                    <div className={`dropdown ${isMenuActive ? '' : 'non-visible'}`}> 
-                        <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
-                        <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
-                        <Link to='/cart' className='dropdown-item' >
-                            <p>Cart</p>
-                            <div className='dropdown-cart'>
-                                <ShoppingCart color='#ff7b54' />
-                                <CartNotifications cart={cart} />
-                            </div>
-                        </Link>
-                    </div>           
                 </nav>
             </header>
             <main>
+                <div className={`dropdown ${isMenuActive ? 'visible' : ''}`}> 
+                <Link to='/' className='dropdown-item' ><p>Home</p><House color='#ff7b54' /></Link>
+                <Link to='/store' className='dropdown-item' ><p>Store</p><Handbag color='#ff7b54' /></Link>
+                <Link to='/cart' className='dropdown-item' >
+                    <p>Cart</p>
+                    <div className='dropdown-cart'>
+                        <ShoppingCart color='#ff7b54' />
+                        <CartNotifications cart={cart} />
+                    </div>
+                </Link>
+            </div>           
                 <Outlet context={cart} />
             </main>
             <footer>
