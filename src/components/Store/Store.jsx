@@ -14,13 +14,6 @@ export default function Store() {
     
     const q = searchParams.get('q') || '';
 
-    useEffect(() => {
-        if (prevLocationRef.current !== location.pathname) {
-            setSearchInput(q);
-            prevLocationRef.current = location.pathname;
-        }
-    }, [q]);
-
     function manageOnChange(e) {
         setSearchInput(e.target.value); 
     };
