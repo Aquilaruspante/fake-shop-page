@@ -3,36 +3,13 @@ import { Form, NavLink, Outlet, useSubmit, useOutletContext, useNavigation, useS
 import { useEffect, useState, useRef } from 'react';
 
 export default function Store() {
-    const submit = useSubmit();
     const cart = useOutletContext();
     const navigation = useNavigation();
     const [searchInput, setSearchInput] = useState('');
-    const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation();
-    const prevLocationRef = useRef(location.pathname);
-    const prevSearchInputRef = useRef('');
-    
-    const q = searchParams.get('q') || '';
 
     function manageOnChange(e) {
         setSearchInput(e.target.value); 
     };
-
-    useEffect(() => {
-        const form = document.querySelector('form[role="search"]');
-        if (!form) return;
-
-        const timeOutId = setTimeout(() => {
-            if (prevSearchInputRef.current !== searchInput) {    
-                submit(form, { replace: true });
-                prevSearchInputRef.current = searchInput;
-            }
-        }, 200);
-
-        return () => {
-            clearTimeout(timeOutId);
-        }
-    }, [searchInput, submit]);
 
     const isLoading = navigation.state === 'loading';
 
